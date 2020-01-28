@@ -21,31 +21,31 @@ function distanceTravelledInFeet(start, end) {
     }
 }
 
-function calculatesFarePrice (start, destination) {
-    const distance = distanceTravelledInFeet(start, destination);
+// function calculatesFarePrice (start, destination) {
+//     const distance = distanceTravelledInFeet(start, destination);
   
-    if (distance <= 400) {
-      return 0;
-    } else if (distance > 400 && distance <= 2000) {
-      return .02 * (distance - 400);
-    } else if (distance > 2000 && distance < 2500) {
-      return 25;
-    } else {
-      return 'cannot travel that far';
-    }
-  }
-//      this works boiiii, vscode drinking 2 much haterade
-// function calculateFarePrice(start, end) {
-//     value = distanceTravelledInFeet(start, end)
-//     minimum = 400 > value
-//     extra_payment = (value > 2000 && value < 2500)
-//     over_charge = value * 25.00
-//     normal_charge = value * .02
-//     switch (minimum) {
-//         case true:
-//             return "You get a free sample."
-//         case false:
-//             if (value > 2500) {return `No sorry your ride is over our limit`}
-//             if (extra_payment == true) {return over_charge} else { return normal_charge }
+//     if (distance <= 400) {
+//       return 0;
+//     } else if (distance > 400 && distance <= 2000) {
+//       return .02 * (distance - 400);
+//     } else if (distance > 2000 && distance < 2500) {
+//       return 25;
+//     } else {
+//       return 'cannot travel that far';
 //     }
 // }
+//      this works boiiii, vscode drinking 2 much haterade
+function calculatesFarePrice(start, end) {
+    let value = distanceTravelledInFeet(start, end)
+    let minimum = 400 > value
+    let extra_payment = (value > 2000 && value < 2500)
+    let over_charge = 25.00
+    let normal_charge = (value - 400) * .02
+    switch (minimum) {
+        case true:
+            return 0
+        case false:
+            if (value > 2500) {return `cannot travel that far`}
+            return extra_payment == true ? over_charge : normal_charge
+    }
+}
