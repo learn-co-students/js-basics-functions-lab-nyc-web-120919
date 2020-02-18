@@ -1,39 +1,24 @@
-function distanceFromHqInBlocks(street) {
-    let result;
-    if (street < 42) {
-        result = 42 + (street * -1);
-    } else {
-        result = street - 42;
-    }
-    return result;
+function distanceFromHqInBlocks(someValue) {
+    return Math.abs(42 - someValue);
 }
 
-function distanceFromHqInFeet(street) {
-    let result = distanceFromHqInBlocks(street) * 264;
-    return result; 
+function distanceFromHqInFeet(someValue) {
+   return distanceFromHqInBlocks(someValue) * 264;
 }
 
 function distanceTravelledInFeet(street1, street2) {
-    let result; 
-    if (street1 < street2) {
-        result = (street2 - street1) * 264;
-    } else {
-        result = (street1 - street2) * 264;
-    }
-    return result;
+    return (Math.abs(street1 - street2)) * 264;
 }
 
 function calculatesFarePrice(start, destination) {
-    let result = distanceTravelledInFeet(start, destination);
-    if (result < 400) {
-        result = 0;
-    } else if (result >= 400 && result <= 2000) {
-        result = ((result * .02) - 8);
-        result = +result.toFixed(2);
-    } else if (result > 2000 && result <= 2500) {
-        result = 25;
-    } else {
-        result = "cannot travel that far";
-    }
-    return result;
+   let feet = distanceTravelledInFeet(start, destination);
+   if (feet < 400) {
+       return 0;
+   } else if (feet > 400 && feet < 2000) {
+       return parseFloat((feet.toFixed(2) * .02 - 8.00).toFixed(2));
+   } else if (feet > 2000 && feet < 2500) {
+       return 25;
+   } else {
+       return "cannot travel that far"
+   }
 }
